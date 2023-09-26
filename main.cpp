@@ -8,4 +8,5 @@ int main()
     int b;
     int c;
     cin >> a;
+    cout<<"hello";
 }
