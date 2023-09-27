@@ -6,7 +6,7 @@ using namespace std;
 const ll modular = 1e9 + 7;
 const double pi = 22 / 7;
 
-void solve()
+ll solve()
 {
     
     
