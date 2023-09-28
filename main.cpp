@@ -27,5 +27,5 @@ int main()
         solve();
     }
     return 0;
-    //tamzid bokachoda
+    ///tamzid bokachoda
 }
