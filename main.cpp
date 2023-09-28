@@ -28,10 +28,7 @@ int main()
     }
     return 0;
     ///tamzid bokachoda
-    //????????
 <<<<<<< HEAD
-    //MOTHERTOAST;
+    //MATHERTOAST;
     
-=======
->>>>>>> 7117da4a7dc6c34c0173b7461bd62f27b4cace07
 }
