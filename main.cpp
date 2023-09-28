@@ -8,9 +8,7 @@ const double pi = 22 / 7;
 
 void solve()
 {
-    ll num;
-    cin>>num;
-    vector<ll>vec
+    
     
 }
 
@@ -29,5 +27,5 @@ int main()
         solve();
     }
     return 0;
-    ///tamzid bokachoda
+    //tamzid bokachoda
 }
