@@ -8,6 +8,7 @@ const double pi = 22 / 7;
 
 ll solve()
 {
+    cout << " hello" << endl;
     
     
 }
