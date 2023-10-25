@@ -12,7 +12,11 @@ ll solve()
         
 
     cout << " hello" << endl;
+<<<<<<< HEAD
     
+=======
+    cout<< " Haloween"<<endl; 
+>>>>>>> f9bfea132831ebe49a8e8e7de684cc447bacd845
 
     
 }
