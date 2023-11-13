@@ -27,13 +27,7 @@ class animatedSprite
     SDL_Rect dest;
     SDL_Texture* texture;
     int frameNumber = 0;
-}
-
-
-
-
-
-;
+};
 
 
 
