@@ -17,7 +17,13 @@ DynamicText* object;
 void Splash::handleEvent_splashScreen(SDL_Event e)
 {
     int x , y;
-
+    
+    SDL_Event e;
+    while (SDL_PollEvent)
+    {
+        /* code */
+    }
+    
 
     
 }
