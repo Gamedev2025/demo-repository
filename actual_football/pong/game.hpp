@@ -5,8 +5,15 @@
 #include <iostream>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include "splashSCreen.hpp"
 
+enum Gamestate{
+    splashscreen,
+    main_menu,
+    Exit
+};
 
+extern enum Gamestate prevState;
 
 using namespace std;
 class Game
@@ -27,10 +34,10 @@ class Game
     void StopAppLoop();
 
     private:
-    SDL_Renderer* renderer;
+     
     SDL_Window* window; 
     bool isGameRunning;
-    TTF_Font* font;
+    // TTF_Font* font = TTF_OpenFont("./font/liberation.ttf" , 24);
     int m_mouseX;
     int m_mouseY;
     int key_x = 50;
@@ -39,6 +46,7 @@ class Game
     int c_y = 300;
     int frameNumber = 0;
     bool success = true;
+
     
     
 }

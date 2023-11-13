@@ -9,12 +9,14 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "TexturedRectangle.hpp"
+#include "splashSCreen.hpp"
 
-TexturedRectangle menu_BackGround;
+ TexturedRectangle menu_BackGround;
+ SDL_Renderer* renderer;
+TTF_Font* font = TTF_OpenFont("./font/liberation.ttf" , 24);
 
-
-#define width 1920
-#define height 1080
+int width = 1920;
+ int height = 1080;
 
 
     // SDL_Surface* tile = IMG_Load("image/football-3.png") ;
@@ -22,7 +24,7 @@ TexturedRectangle menu_BackGround;
 Game::Game()
 {
     //This where we initialize everything
-    if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)==-1)) { 
+    if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO | TTF_Init())==-1)) { 
         printf("Could not initialize SDL: %s.\n", SDL_GetError());
         exit(-1);
     }
@@ -30,7 +32,7 @@ Game::Game()
      SDL_CreateWindowAndRenderer( width , height , 0 , &window , &renderer);
      SDL_SetWindowTitle(window , "First game!!");
      isGameRunning = true;
-     
+     font ;
     
 
 
@@ -46,7 +48,7 @@ Game::~Game()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     menu_BackGround.~TexturedRectangle();
-   // TTF_CloseFont(font);
+   TTF_CloseFont(font);
 
     //SDL_DestroyTexture(texture);
     SDL_Quit();
@@ -55,8 +57,9 @@ Game::~Game()
 bool Game::loadMedia()
 {
     
-    if (!menu_BackGround.textureMedia(renderer , "./image/MainMenu.jpg"))
+    if (!menu_BackGround.textureMedia(renderer , "./image/main_menu.png"))
     {
+        cout << "none png" <<endl;
         success = false;
         
     }
@@ -71,10 +74,11 @@ void Game::loop()
         
         Uint32 button;
         button = SDL_GetMouseState(&m_mouseX,&m_mouseY);
-        
+             input();
+               update();
             render();
-            input();
-            update();
+           
+          
 
         
     }
@@ -94,15 +98,14 @@ void Game::render()
     
     SDL_RenderFillRect(renderer, &rect);
 
-    menu_BackGround.SetPosition(0 , 0 , 1920 ,1080);
-    menu_BackGround.playFrame(0, 0 , 1122 , 1122 , 0);
-    menu_BackGround.Render(renderer);
-
-
-
-
    
-    SDL_RenderPresent(renderer);
+
+
+
+
+    
+    
+    //SDL_RenderPresent(renderer);
 
     SDL_Delay(100);
 }
@@ -112,9 +115,11 @@ void Game::render()
 void Game::input()
 {
     SDL_Event event;
-
+   
     while(SDL_PollEvent(&event))
     {
+        
+        Splash::handle_splashScreen(); 
         if (event.type == SDL_QUIT)
         {
             isGameRunning = false;
