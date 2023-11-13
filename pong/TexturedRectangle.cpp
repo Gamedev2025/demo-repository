@@ -2,11 +2,11 @@
 // Third Party
 #include <SDL2/SDL.h> // For Mac, use <SDL.h>
 #include <SDL2/SDL_image.h>
-<<<<<<< HEAD
-#include "TexturedRectangle.h"
-=======
+
+
+
 #include "TexturedRectangle.hpp"
->>>>>>> c9054ba8344bbf8fd2749b8a04d7902754da456a
+
 //#include "ResourceManager.hpp"
 
 // Constructor

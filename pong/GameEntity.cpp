@@ -6,27 +6,15 @@
 using namespace std;
 
 
-GameEntity::GameEntity()
-    {
-        m_sprite = nullptr;
-    }
-    GameEntity(SDL_Renderer* renderer ,  string sprite)
+  GameEntity::GameEntity(SDL_Renderer* renderer ,  string sprite)
     {
         m_renderer = renderer;
         m_sprite = new TexturedRectangle(m_renderer , sprite);
     }
 
-    GameEntity::~GameEntity()
-    {
+   
 
-    }
-
-     GameEntity::void Update()
-    {
-
-    }
-
-     GameEntity::void draw(int x , int y , int w , int h)
+     void GameEntity:: draw(int x , int y , int w , int h)
         {
         dest.x = x;
         dest.y = y;
@@ -35,7 +23,7 @@ GameEntity::GameEntity()
 
         }
 
-        GameEntity::void playFrame(int x , int y , int w , int h , int frameNumer)
+       void GameEntity:: playFrame(int x , int y , int w , int h , int frameNumer)
         {
     
         src.x = x+w*frameNumer;
@@ -44,7 +32,7 @@ GameEntity::GameEntity()
         src.h = h;
         }
 
-     GameEntity::void Render()
+    void GameEntity:: Render()
     {
         if (m_sprite != nullptr)
         {

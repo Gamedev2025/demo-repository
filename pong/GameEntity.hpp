@@ -3,7 +3,7 @@
 
 #include<bits/stdc++.h>
 #include<SDL2/SDL.h>
-
+#include "math.hpp"
 #include "TexturedRectangle.hpp"
 
 class GameEntity{
@@ -25,31 +25,14 @@ class GameEntity{
 
     }
 
-    void draw(int x , int y , int w , int h)
-        {
-        dest.x = x;
-        dest.y = y;
-        dest.w = w;
-        dest.h = h;
+    void draw(int x , int y , int w , int h);
+        
+    void setPosition(int x , int y);
+    void playFrame(int x , int y , int w , int h , int frameNumer);
+        
 
-        }
-
-       void playFrame(int x , int y , int w , int h , int frameNumer)
-        {
+    void Render();
     
-        src.x = x+w*frameNumer;
-        src.y= y;
-        src.w = w;
-        src.h = h;
-        }
-
-    void Render()
-    {
-        if (m_sprite != nullptr)
-        {
-            m_sprite -> Render(m_renderer);
-        }
-    }
 
     TexturedRectangle& GetTexturedRectangle()
     {

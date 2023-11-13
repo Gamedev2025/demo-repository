@@ -9,7 +9,7 @@ using namespace std;
 class TexturedRectangle{
     public:
         // Constructor
-        TexturedRectangle(SDL_Renderer* renderer, string filepath);
+        TexturedRectangle(SDL_Renderer*& renderer, string filepath);
 
         
         // Destructor
@@ -43,7 +43,8 @@ class TexturedRectangle{
         // Update every frame
         void Update();
 
-
+        //determining collision
+        SDL_bool IsColliding(TexturedRectangle& obj);
         //updating animation
        void updateAnimation(SDL_Renderer* renderer)
 
