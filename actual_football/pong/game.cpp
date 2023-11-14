@@ -15,10 +15,10 @@
  SDL_Renderer* renderer;
 TTF_Font* font = TTF_OpenFont("./font/liberation.ttf" , 24);
 
-int width = 1920;
- int height = 1080;
-
-
+int width = 1200;
+ int height = 720;
+ Gamestate currState = splashscreen;
+//currState = splashscreen;
     // SDL_Surface* tile = IMG_Load("image/football-3.png") ;
     // SDL_Texture* texture ;
 Game::Game()
@@ -119,7 +119,17 @@ void Game::input()
     while(SDL_PollEvent(&event))
     {
         
-        Splash::handle_splashScreen(); 
+         
+        switch (currState)
+        {
+        case splashscreen: Splash::handleEvent_splashScreen(event); break;
+            /* code */
+            
+        
+        default:
+            break;
+        }
+        Splash::handle_splashScreen();
         if (event.type == SDL_QUIT)
         {
             isGameRunning = false;

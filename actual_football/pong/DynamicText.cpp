@@ -37,7 +37,7 @@ DynamicText::~DynamicText(){
 
 void DynamicText::DrawText(SDL_Renderer* renderer, std::string text,int x, int y, int w, int h){
     // Pixels from our text
-    m_surface = TTF_RenderText_Solid(m_ourFont,text.c_str(),{255,255,255});
+    m_surface = TTF_RenderText_Solid(m_ourFont,text.c_str(),{140,140,142});
 
     // Setup the texture
     m_texture = SDL_CreateTextureFromSurface(renderer,m_surface);

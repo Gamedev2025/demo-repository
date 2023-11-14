@@ -105,6 +105,7 @@ int main(int argc, char* argv[]) {
     if (birdSurface == nullptr) {
         printf("Unable to load bird image! SDL_Error: %s\n", SDL_GetError());
         return 1;
+        
     }
 
 

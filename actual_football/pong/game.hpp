@@ -12,8 +12,8 @@ enum Gamestate{
     main_menu,
     Exit
 };
+ 
 
-extern enum Gamestate prevState;
 
 using namespace std;
 class Game
