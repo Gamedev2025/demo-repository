@@ -10,8 +10,12 @@
 
 #include "TexturedRectangle.hpp"
 #include "splashSCreen.hpp"
+#include "menu.hpp"
+#include "field.hpp"
 
  TexturedRectangle menu_BackGround;
+ TexturedRectangle after_menu;
+ TexturedRectangle football;
  SDL_Renderer* renderer;
 TTF_Font* font = TTF_OpenFont("./font/liberation.ttf" , 24);
 
@@ -62,6 +66,17 @@ bool Game::loadMedia()
         cout << "none png" <<endl;
         success = false;
         
+    }
+
+    if(!after_menu.textureMedia(renderer , "./image/main.png"))
+    {
+        cout << "main not found" << endl;
+    }
+
+    if(!football.textureMedia(renderer , "./image/football_field.png"))
+    {
+        cout<< "footbatll field is not loaded" << endl;
+        success = false;
     }
     return success;
 }
@@ -116,109 +131,50 @@ void Game::input()
 {
     SDL_Event event;
    
-    while(SDL_PollEvent(&event))
+    while(SDL_PollEvent(&event) != 0)
     {
-        
-         
-        switch (currState)
-        {
-        case splashscreen: Splash::handleEvent_splashScreen(event); break;
-            /* code */
-            
-        
-        default:
-            break;
-        }
-        Splash::handle_splashScreen();
         if (event.type == SDL_QUIT)
         {
             isGameRunning = false;
         }
 
-        if (event.type == SDL_KEYDOWN)
-        {
-            if (event.key.keysym.sym == SDLK_ESCAPE)
-            {
-                isGameRunning = false;
-            }
+        // if (event.type == SDL_KEYDOWN)
+        // {
+        //     if (event.key.keysym.sym == SDLK_ESCAPE)
+        //     {
+        //         isGameRunning = false;
+        //     }
 
-            if (event.key.keysym.sym == SDLK_w) 
-            {
+        //     //frameNumber = 0;
 
-                key_y--;
-                c_y--;
-
-                key_y++;
-                c_y++;
-
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                frameNumber = 0;
-                }
-             
-            }
-
-            //frameNumber = 0;
-
-            if (event.key.keysym.sym == SDLK_s) 
-            {
-
-                key_y++;
-                c_y++;
-
-                key_y--;
-                c_y--;
-
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                    frameNumber = 0;
-                }
-               
-            }
-
-            //frameNumber = 0;
-            if (event.key.keysym.sym == SDLK_a) 
-            {
-                key_x--;
-                c_x--;
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                    frameNumber = 0;
-                }
-               
-            }
-            //frameNumber = 0;
-            if (event.key.keysym.sym == SDLK_d) 
-            {
-                key_x++;
-                c_x++;
-
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                    frameNumber = 0;
-                }
-              
-            }
-            //frameNumber = 0;
-            if (key_x < 0) {
-            key_x = 0;
-        } else if (key_x > width- 100) {
-            key_x = width - 100;
-        }
-
-        if (key_y < 0) {
-            key_y = 0;
-        } else if (key_y > height - 100) {
-            key_y = height - 100;
-        }
             
+        // }
+         
+        switch (currState)
+        {
+        case main_menu : menu::handleEvent_menu(event); break;
+        case splashscreen: Splash::handleEvent_splashScreen(event); break;
+        case Football_Field: field::handleEvent_field(event); break;
+            
+        
         }
+        
+        //Splash::handle_splashScreen();
+        
+
+        
 
     }
+
+    switch (currState)
+        {
+        case main_menu : menu::handle_menu(); break;
+        case splashscreen: Splash::handle_splashScreen(); break;
+        case Football_Field: field::handle_field();break;
+        case Exit: isGameRunning = false;
+            
+        
+        }
 }
 
 

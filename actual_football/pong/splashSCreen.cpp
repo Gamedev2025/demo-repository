@@ -7,7 +7,7 @@ extern Gamestate currState;
 extern SDL_Renderer* renderer;
 extern bool isGameRunning ;
 extern int width ;
- extern int height;
+extern int height;
 DynamicText* object;
  Splash::~Splash()
     {

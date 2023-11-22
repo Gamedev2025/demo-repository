@@ -1,5 +1,5 @@
-#ifndef SPLASHSCRENN_HPP
-#define SPLASHSCRENN_HPP
+#ifndef FIELD_HPP
+#define FIELD_HPP
 
 
 #include <string>
@@ -8,24 +8,25 @@
 #include <SDL2/SDL_ttf.h>
 #include <bits/stdc++.h>
 #include "DynamicText.hpp"
+//Gamestate currState;
 
 using namespace std;
 
 
     
-class Splash
+class field
 {
 
     public:
      
-    Splash()
+    field()
     {
 
     }
-     static void handleEvent_splashScreen(SDL_Event e);
-    ~Splash();
+    static void handleEvent_field(SDL_Event e);
+    ~field();
     
-    static void handle_splashScreen();
+    static void handle_field();
     
     private:
    

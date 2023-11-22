@@ -7,9 +7,12 @@
 #include <SDL2/SDL_ttf.h>
 #include "splashSCreen.hpp"
 
+
 enum Gamestate{
     splashscreen,
     main_menu,
+    Play_now,
+    Football_Field,
     Exit
 };
  
