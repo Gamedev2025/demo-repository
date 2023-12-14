@@ -13,6 +13,8 @@ enum Gamestate{
     main_menu,
     Play_now,
     Football_Field,
+    Player1,
+    Player2,
     Exit
 };
  
@@ -50,7 +52,7 @@ class Game
     int frameNumber = 0;
     bool success = true;
 
-    
+    int count;
     
 }
 

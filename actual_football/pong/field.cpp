@@ -43,7 +43,7 @@ void field::handle_field()
     //object = new DynamicText("./font/RobotoSlab-Bold.ttf" , 24);
     
      football.SetPosition(0 ,0 , width , height);
-     //after_menu.playFrame(0 ,0 , width , height , 0);
+     football.playFrame(0 ,0 , width , height , 0);
     
     football.Render(renderer);
     //object->DrawText(renderer , "Press w to proceed" , 300 , 500 , 700 , 100);

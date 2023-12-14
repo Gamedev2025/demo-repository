@@ -26,15 +26,15 @@ void menu::handleEvent_menu(SDL_Event e)
         if(e.type == SDL_MOUSEBUTTONDOWN)
         {
         
-            if(x >= 900 && x <= 1096 && y >= 396 && y <= 455)
+            if(x >= 960 && x <= 1166 && y >= 396  && y <= 460)
             {
                 
                 cout << "Play Now" << endl;
-                currState = Football_Field;
+                currState = Player1;
             }
 
 
-             if(x >= 900 && x <= 1096 && y >= 501 && y <= 555)
+             if(x >= 960 && x <= 1166 && y >= 500 && y <= 562)
             {
                 
                 cout << "Exit" << endl;
