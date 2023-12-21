@@ -66,7 +66,43 @@ void field::handleEvent_field(SDL_Event e)
                 currState = main_menu;
                 
              }
-            //player 1
+        //      switch (e.key.keysym.sym) {
+        //             case SDLK_w:
+        //                 positiony -= 6;
+        //                 frameNumber++;
+        //                 break;
+        //             case SDLK_s:
+        //                 positiony -= 6;
+        //                 frameNumber++;
+        //                 break;
+        //             case SDLK_a:
+        //                 positionx -= 6;
+        //                 frameNumber++;
+        //                 break;
+        //             case SDLK_d:
+        //                 positionx += 6;
+        //                 frameNumber++;
+        //                 break;
+        //             case SDLK_UP:
+        //                 positiony1 -= 6;
+        //                 frameNumber1++;
+        //                 break;
+        //             case SDLK_DOWN:
+        //                positiony1 += 6;
+        //                 frameNumber1++;
+        //                 break;
+        //             case SDLK_LEFT:
+        //                 positionx1 -= 6;
+        //                 frameNumber1++;
+        //                 break;
+        //             case SDLK_RIGHT:
+        //                positionx1 += 6;
+        //                 frameNumber++;
+        //                 break;
+        //         }
+        //         //break;
+        // }
+           // player 1
              if (e.key.keysym.sym == SDLK_w &&  positiony >= 340)
              {
                 cout << "w" << endl;
@@ -94,7 +130,7 @@ void field::handleEvent_field(SDL_Event e)
                 cout << x << endl;
 
              }
-             if (e.key.keysym.sym == SDLK_d && positionx <= 1160)
+             if (e.key.keysym.sym == SDLK_d && positionx <= 690)
              {
                 cout << "d" << endl;
                  frameNumber++;
@@ -104,7 +140,7 @@ void field::handleEvent_field(SDL_Event e)
 
              }
             //player 2
-             if (e.key.keysym.sym == SDLK_UP &&  positiony >= 340)
+             if (e.key.keysym.sym == SDLK_UP &&  positiony <= 540)
              {
                 cout << "w" << endl;
                 frameNumber1++;
@@ -113,7 +149,7 @@ void field::handleEvent_field(SDL_Event e)
                 cout << x << endl;
 
              }
-             if (e.key.keysym.sym == SDLK_DOWN && positiony <= 580)
+             if (e.key.keysym.sym == SDLK_DOWN && positiony >= 340)
              {
                 cout << "y" << endl;
                  frameNumber1++;
@@ -122,7 +158,7 @@ void field::handleEvent_field(SDL_Event e)
                 cout << x << endl;
 
              }
-             if (e.key.keysym.sym == SDLK_LEFT && positionx >= 138)
+             if (e.key.keysym.sym == SDLK_LEFT && positionx <= 690)
              {
                 cout << "a" << endl;
                  frameNumber1++;
@@ -131,58 +167,59 @@ void field::handleEvent_field(SDL_Event e)
                 cout << x << endl;
 
              }
-             if (e.key.keysym.sym == SDLK_RIGHT && positionx <= 1160)
+             if (e.key.keysym.sym == SDLK_RIGHT && positionx >= 138)
              {
                 cout << "a" << endl;
                  frameNumber1++;
                 
-                positionx1 -= 6;
-                cout << x << endl;
+                positionx1 += 6;
+                cout << frameNumber1 << endl;
 
              }
              
 
-		{
+		// {
 			
 			
 				
 			
 				
-		}
-	 	if (state[SDL_SCANCODE_RIGHT])
-		{
+		// }
+	 	// if (state[SDL_SCANCODE_RIGHT])
+		// {
 			
 			
 				
 			
-		}
-	 	if (state[SDL_SCANCODE_UP]
-		){
+		// }
+	 	// if (state[SDL_SCANCODE_UP]
+		// ){
 			
 			
-				y -= 6;
+		// 		y -= 6;
 			
-		}
-	 	if (state[SDL_SCANCODE_DOWN])
-		{
+		// }
+	 	// if (state[SDL_SCANCODE_DOWN])
+		// {
 		
 			
-				y += 6;
+		// 		y += 6;
 			
-		}
+		// }
 
              
-        }
         
         
-          
-
         
-    
-    
-
-    
 }
+}     
+
+        
+    
+    
+
+    
+
 
 void field::handle_field(int value , int value1 , SDL_Event e)
 {
@@ -325,9 +362,7 @@ void field::handle_field(int value , int value1 , SDL_Event e)
     //             x += 6;
     //             cout << x << endl;
     //          }
-             object1.SetPosition(500 , 500 , 25 , 25);
-            
-            object1.Render(renderer);
+             
             if(frameNumber == 0)
             {
                 walking1.SetPosition(positionx , positiony , 100 , 150);
@@ -385,8 +420,12 @@ void field::handle_field(int value , int value1 , SDL_Event e)
             reflected1.Render(renderer);
                 
             }
-            if(frameNumber > 3) frameNumber = 0;
-            if(frameNumber1 > 3) frameNumber = 0;
+             if(frameNumber > 3) frameNumber = 0;
+            if(frameNumber1 > 3) frameNumber1 = 0;
+            object1.SetPosition(500 , 500 , 25 , 25);
+            
+            object1.Render(renderer);
+           
     
     //object->DrawText(renderer , "Press w to proceed" , 300 , 500 , 700 , 100);
     SDL_RenderPresent(renderer);
