@@ -20,8 +20,20 @@
  TexturedRectangle football;
  TexturedRectangle player1;
  TexturedRectangle player2;
+ TexturedRectangle argentina;
+ TexturedRectangle brazil;
+ TexturedRectangle belgium;
+ TexturedRectangle england;
+ TexturedRectangle france;
+ TexturedRectangle germany;
+ TexturedRectangle italy;
+ TexturedRectangle ned;
+ TexturedRectangle portugal;
+ TexturedRectangle spain;
+ TexturedRectangle uruguya;
  SDL_Renderer* renderer;
  int count = 0;
+ int count1 = 0;
 TTF_Font* font = TTF_OpenFont("./font/liberation.ttf" , 24);
 
 int width = 1380;
@@ -34,7 +46,7 @@ int width = 1380;
 Game::Game()
 {
     //This where we initialize everything
-    if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO | TTF_Init())==-1)) { 
+    if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO | TTF_Init()| IMG_INIT_PNG)==-1)) { 
         printf("Could not initialize SDL: %s.\n", SDL_GetError());
         exit(-1);
     }
@@ -94,6 +106,62 @@ bool Game::loadMedia()
     if (!player2.textureMedia(renderer , "./image/player2.png"))
     {
         cout << "Player 2 is not loaded!" << endl;
+        success = false;
+    }
+
+    if(!argentina.textureMedia(renderer, "./image/arg.png"))
+    {
+        cout << "Argentina Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!brazil.textureMedia(renderer, "./image/bra.png"))
+    {
+        cout << "Brazil Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!belgium.textureMedia(renderer, "./image/bel.png"))
+    {
+        cout << "Belgium Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!england.textureMedia(renderer, "./image/England.png"))
+    {
+        cout << "England Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!germany.textureMedia(renderer, "./image/ger.png"))
+    {
+        cout << "Germany Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!italy.textureMedia(renderer, "./image/italy.png"))
+    {
+        cout << "Italy Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!ned.textureMedia(renderer, "./image/Ned.png"))
+    {
+        cout << "Netherland Flag has not been loaded!" << endl;
+        success = false;
+    }
+     if(!portugal.textureMedia(renderer, "./image/port.png"))
+    {
+        cout << "Portugal Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!spain.textureMedia(renderer, "./image/spa.png"))
+    {
+        cout << "Spain Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!uruguya.textureMedia(renderer, "./image/Uru.png"))
+    {
+        cout << "Uruguya Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!france.textureMedia(renderer, "./image/france.png"))
+    {
+        cout << "France Flag has not been loaded!" << endl;
         success = false;
     }
     return success;
@@ -173,8 +241,8 @@ void Game::input()
         case main_menu : menu::handleEvent_menu(event); break;
         case splashscreen: Splash::handleEvent_splashScreen(event); break;
         case Football_Field: field::handleEvent_field(event); break;
-        case Player1 : play1::handleEvent_menu(event);break;
-       case Player2 : shift :: handleEvent_menu(event);break;
+        case Player1 : count =  play1::handleEvent_menu(event);break;
+       case Player2 : count1 = shift :: handleEvent_menu(event);break;
         
         }
         
@@ -184,12 +252,13 @@ void Game::input()
         
 
     }
+    
 
     switch (currState)
         {
         case main_menu : menu::handle_menu(); break;
         case splashscreen: Splash::handle_splashScreen(); break;
-        case Football_Field: field::handle_field();break;
+        case Football_Field: field::handle_field(count , count1);break;
         case Player1 : play1::handle_menu();break;
         case Player2 : shift:: handle_menu();break;
          

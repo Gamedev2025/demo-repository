@@ -26,7 +26,7 @@ class field
     static void handleEvent_field(SDL_Event e);
     ~field();
     
-    static void handle_field();
+    static void handle_field(int value, int value1);
     
     private:
    
