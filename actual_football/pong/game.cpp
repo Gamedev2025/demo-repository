@@ -32,6 +32,14 @@
  TexturedRectangle spain;
  TexturedRectangle uruguya;
  TexturedRectangle object1;
+ TexturedRectangle walking1;
+ TexturedRectangle walking2;
+ TexturedRectangle walking3;
+ TexturedRectangle walking4;
+ TexturedRectangle reflected1;
+ TexturedRectangle reflected2;
+ TexturedRectangle reflected3;
+ TexturedRectangle reflected4;
  SDL_Renderer* renderer;
  int count = 0;
  int count1 = 0;
@@ -168,6 +176,46 @@ bool Game::loadMedia()
     if(!object1.textureMedia(renderer , "./image/football.png"))
     {
         cout << "tennis ball is not loaded!" << endl;
+    }
+    if(!walking1.textureMedia(renderer , "./image/walking1-01.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!walking2.textureMedia(renderer , "./image/walking2.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!walking3.textureMedia(renderer , "./image/walking3.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!walking4.textureMedia(renderer , "./image/walking4.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!reflected1.textureMedia(renderer , "./image/reflected1-01.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!reflected2.textureMedia(renderer , "./image/reflected2.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!reflected3.textureMedia(renderer , "./image/reflected3.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!reflected4.textureMedia(renderer , "./image/reflected4.png"))
+    {
+        cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
     }
     return success;
 }
