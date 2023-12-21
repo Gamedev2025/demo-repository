@@ -31,6 +31,7 @@
  TexturedRectangle portugal;
  TexturedRectangle spain;
  TexturedRectangle uruguya;
+ TexturedRectangle object1;
  SDL_Renderer* renderer;
  int count = 0;
  int count1 = 0;
@@ -164,6 +165,10 @@ bool Game::loadMedia()
         cout << "France Flag has not been loaded!" << endl;
         success = false;
     }
+    if(!object1.textureMedia(renderer , "./image/football.png"))
+    {
+        cout << "tennis ball is not loaded!" << endl;
+    }
     return success;
 }
 
@@ -217,7 +222,7 @@ void Game::input()
 {
     SDL_Event event;
    
-    while(SDL_PollEvent(&event) != 0)
+    while(SDL_PollEvent(&event))
     {
         if (event.type == SDL_QUIT)
         {
@@ -258,7 +263,7 @@ void Game::input()
         {
         case main_menu : menu::handle_menu(); break;
         case splashscreen: Splash::handle_splashScreen(); break;
-        case Football_Field: field::handle_field(count , count1);break;
+        case Football_Field: field::handle_field(count , count1 , event);break;
         case Player1 : play1::handle_menu();break;
         case Player2 : shift:: handle_menu();break;
          
@@ -266,6 +271,9 @@ void Game::input()
             
         
         }
+        
+
+
 }
 
 

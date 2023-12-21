@@ -28,20 +28,20 @@ class TexturedRectangle{
         //for animating
         void draw(int x , int y , int w , int h)
         {
-        dest.x = x;
-        dest.y = y;
-        dest.w = w;
-        dest.h = h;
+        m_rectangle.x = x;
+        m_rectangle.y = y;
+        m_rectangle.w = w;
+        m_rectangle.h = h;
 
         }
 
        void playFrame(int x , int y , int w , int h , int frameNumer)
         {
     
-        src.x = x+w*frameNumer;
-        src.y= y;
-        src.w = w;
-        src.h = h;
+        m_rectangle.x = x+w*frameNumer;
+        m_rectangle.y= y;
+        m_rectangle.w = w;
+        m_rectangle.h = h;
         }
 
         // Update every frame
