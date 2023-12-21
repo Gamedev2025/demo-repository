@@ -9,20 +9,44 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "TexturedRectangle.hpp"
+#include "splashSCreen.hpp"
+#include "menu.hpp"
+#include "player1.hpp"
+#include "player2.hpp"
+#include "field.hpp"
 
-TexturedRectangle menu_BackGround;
+ TexturedRectangle menu_BackGround;
+ TexturedRectangle after_menu;
+ TexturedRectangle football;
+ TexturedRectangle player1;
+ TexturedRectangle player2;
+ TexturedRectangle argentina;
+ TexturedRectangle brazil;
+ TexturedRectangle belgium;
+ TexturedRectangle england;
+ TexturedRectangle france;
+ TexturedRectangle germany;
+ TexturedRectangle italy;
+ TexturedRectangle ned;
+ TexturedRectangle portugal;
+ TexturedRectangle spain;
+ TexturedRectangle uruguya;
+ SDL_Renderer* renderer;
+ int count = 0;
+ int count1 = 0;
+TTF_Font* font = TTF_OpenFont("./font/liberation.ttf" , 24);
 
-
-#define width 1920
-#define height 1080
-
-
+int width = 1380;
+ int height = 720;
+ Gamestate currState = splashscreen;
+ string filename;
+//currState = splashscreen;
     // SDL_Surface* tile = IMG_Load("image/football-3.png") ;
     // SDL_Texture* texture ;
 Game::Game()
 {
     //This where we initialize everything
-    if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)==-1)) { 
+    if((SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO | TTF_Init()| IMG_INIT_PNG)==-1)) { 
         printf("Could not initialize SDL: %s.\n", SDL_GetError());
         exit(-1);
     }
@@ -30,7 +54,7 @@ Game::Game()
      SDL_CreateWindowAndRenderer( width , height , 0 , &window , &renderer);
      SDL_SetWindowTitle(window , "First game!!");
      isGameRunning = true;
-     
+     font ;
     
 
 
@@ -46,7 +70,7 @@ Game::~Game()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     menu_BackGround.~TexturedRectangle();
-   // TTF_CloseFont(font);
+   TTF_CloseFont(font);
 
     //SDL_DestroyTexture(texture);
     SDL_Quit();
@@ -55,10 +79,90 @@ Game::~Game()
 bool Game::loadMedia()
 {
     
-    if (!menu_BackGround.textureMedia(renderer , "./image/MainMenu.jpg"))
+    if (!menu_BackGround.textureMedia(renderer , "./image/main_menu.png"))
     {
+        cout << "none png" <<endl;
         success = false;
         
+    }
+
+    if(!after_menu.textureMedia(renderer , "./image/main.png"))
+    {
+        cout << "main not found" << endl;
+    }
+
+    if(!football.textureMedia(renderer , "./image/football_field_final.png"))
+    {
+        cout<< "footbatll field is not loaded" << endl;
+        success = false;
+    }
+
+    if(!player1.textureMedia(renderer , "./image/player1.png"))
+    {
+        cout << "Player 1 is not loaded!" << endl;
+        success = false;
+    }
+
+    if (!player2.textureMedia(renderer , "./image/player2.png"))
+    {
+        cout << "Player 2 is not loaded!" << endl;
+        success = false;
+    }
+
+    if(!argentina.textureMedia(renderer, "./image/arg.png"))
+    {
+        cout << "Argentina Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!brazil.textureMedia(renderer, "./image/bra.png"))
+    {
+        cout << "Brazil Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!belgium.textureMedia(renderer, "./image/bel.png"))
+    {
+        cout << "Belgium Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!england.textureMedia(renderer, "./image/England.png"))
+    {
+        cout << "England Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!germany.textureMedia(renderer, "./image/ger.png"))
+    {
+        cout << "Germany Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!italy.textureMedia(renderer, "./image/italy.png"))
+    {
+        cout << "Italy Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!ned.textureMedia(renderer, "./image/Ned.png"))
+    {
+        cout << "Netherland Flag has not been loaded!" << endl;
+        success = false;
+    }
+     if(!portugal.textureMedia(renderer, "./image/port.png"))
+    {
+        cout << "Portugal Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!spain.textureMedia(renderer, "./image/spa.png"))
+    {
+        cout << "Spain Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!uruguya.textureMedia(renderer, "./image/Uru.png"))
+    {
+        cout << "Uruguya Flag has not been loaded!" << endl;
+        success = false;
+    }
+    if(!france.textureMedia(renderer, "./image/france.png"))
+    {
+        cout << "France Flag has not been loaded!" << endl;
+        success = false;
     }
     return success;
 }
@@ -71,10 +175,11 @@ void Game::loop()
         
         Uint32 button;
         button = SDL_GetMouseState(&m_mouseX,&m_mouseY);
-        
+             input();
+               update();
             render();
-            input();
-            update();
+           
+          
 
         
     }
@@ -94,15 +199,14 @@ void Game::render()
     
     SDL_RenderFillRect(renderer, &rect);
 
-    menu_BackGround.SetPosition(0 , 0 , 1920 ,1080);
-    menu_BackGround.playFrame(0, 0 , 1122 , 1122 , 0);
-    menu_BackGround.Render(renderer);
-
-
-
-
    
-    SDL_RenderPresent(renderer);
+
+
+
+
+    
+    
+    //SDL_RenderPresent(renderer);
 
     SDL_Delay(100);
 }
@@ -112,98 +216,56 @@ void Game::render()
 void Game::input()
 {
     SDL_Event event;
-
-    while(SDL_PollEvent(&event))
+   
+    while(SDL_PollEvent(&event) != 0)
     {
         if (event.type == SDL_QUIT)
         {
             isGameRunning = false;
         }
 
-        if (event.type == SDL_KEYDOWN)
-        {
-            if (event.key.keysym.sym == SDLK_ESCAPE)
-            {
-                isGameRunning = false;
-            }
+        // if (event.type == SDL_KEYDOWN)
+        // {
+        //     if (event.key.keysym.sym == SDLK_ESCAPE)
+        //     {
+        //         isGameRunning = false;
+        //     }
 
-            if (event.key.keysym.sym == SDLK_w) 
-            {
+        //     //frameNumber = 0;
 
-                key_y--;
-                c_y--;
-
-                key_y++;
-                c_y++;
-
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                frameNumber = 0;
-                }
-             
-            }
-
-            //frameNumber = 0;
-
-            if (event.key.keysym.sym == SDLK_s) 
-            {
-
-                key_y++;
-                c_y++;
-
-                key_y--;
-                c_y--;
-
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                    frameNumber = 0;
-                }
-               
-            }
-
-            //frameNumber = 0;
-            if (event.key.keysym.sym == SDLK_a) 
-            {
-                key_x--;
-                c_x--;
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                    frameNumber = 0;
-                }
-               
-            }
-            //frameNumber = 0;
-            if (event.key.keysym.sym == SDLK_d) 
-            {
-                key_x++;
-                c_x++;
-
-                frameNumber++;
-                if (frameNumber > 4)
-                {
-                    frameNumber = 0;
-                }
-              
-            }
-            //frameNumber = 0;
-            if (key_x < 0) {
-            key_x = 0;
-        } else if (key_x > width- 100) {
-            key_x = width - 100;
-        }
-
-        if (key_y < 0) {
-            key_y = 0;
-        } else if (key_y > height - 100) {
-            key_y = height - 100;
-        }
             
+        // }
+         
+        switch (currState)
+        {
+        case main_menu : menu::handleEvent_menu(event); break;
+        case splashscreen: Splash::handleEvent_splashScreen(event); break;
+        case Football_Field: field::handleEvent_field(event); break;
+        case Player1 : count =  play1::handleEvent_menu(event);break;
+       case Player2 : count1 = shift :: handleEvent_menu(event);break;
+        
         }
+        
+        //Splash::handle_splashScreen();
+        
+
+        
 
     }
+    
+
+    switch (currState)
+        {
+        case main_menu : menu::handle_menu(); break;
+        case splashscreen: Splash::handle_splashScreen(); break;
+        case Football_Field: field::handle_field(count , count1);break;
+        case Player1 : play1::handle_menu();break;
+        case Player2 : shift:: handle_menu();break;
+         
+        case Exit: isGameRunning = false;
+            
+        
+        }
 }
 
 
