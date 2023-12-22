@@ -2,8 +2,8 @@
 
 struct 
 {
-    float x ;
-    float y;
-}vector2D;
+    int x ;
+    int y;
+}Vector2D;
 
 

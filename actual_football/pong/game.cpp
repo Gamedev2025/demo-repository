@@ -15,6 +15,7 @@
 #include "player2.hpp"
 #include "field.hpp"
 
+
  TexturedRectangle menu_BackGround;
  TexturedRectangle after_menu;
  TexturedRectangle football;
@@ -41,6 +42,7 @@
  TexturedRectangle reflected3;
  TexturedRectangle reflected4;
  TexturedRectangle tennis;
+ 
  SDL_Renderer* renderer;
  int count = 0;
  int count1 = 0;

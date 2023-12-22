@@ -31,6 +31,9 @@ bool TexturedRectangle::textureMedia(SDL_Renderer*& renderer, std::string filepa
     return true;
 }
 
+SDL_Rect& TexturedRectangle::GetSDLRect(){
+    return m_rectangle;}
+
 void TexturedRectangle::SetPosition(int x, int y, int w, int h){
     // Create a rectangle
     m_rectangle.x = x;

@@ -39,17 +39,17 @@ extern int width ;
  extern int height;
  
   
-  int positionx = 273;
-  int positiony = 425;
-  int positionx1 = 400;
-  int positiony1 = 400;
+  int positionx = 300;
+  int positiony = 460;
+  int positionx1 = 1090;
+  int positiony1 = 460;
   int frameNumber = 0;
   int frameNumber1 = 0;
   //ball position
   int SCREEN_WIDTH = 670;
   int SCREEN_HEIGHT = 560;
-  int dx = 10;
-  int dy = 10;
+  int dx = 20;
+  int dy = 20;
 //DynamicText* object;
  field::~field()
     {
@@ -115,7 +115,7 @@ void field::handleEvent_field(SDL_Event e)
         //         //break;
         // }
            // player 1
-             if (e.key.keysym.sym == SDLK_w &&  positiony >= 340)
+             if (e.key.keysym.sym == SDLK_w &&  positiony>= 340)
              {
                 cout << "w" << endl;
                 frameNumber++;
@@ -152,7 +152,7 @@ void field::handleEvent_field(SDL_Event e)
 
              }
             //player 2
-             if (e.key.keysym.sym == SDLK_UP &&  positiony <= 540)
+             if (e.key.keysym.sym == SDLK_UP &&  positiony1 >= 340)
              {
                 cout << "w" << endl;
                 frameNumber1++;
@@ -161,7 +161,7 @@ void field::handleEvent_field(SDL_Event e)
                 cout << x << endl;
 
              }
-             if (e.key.keysym.sym == SDLK_DOWN && positiony >= 340)
+             if (e.key.keysym.sym == SDLK_DOWN && positiony1 <= 580)
              {
                 cout << "y" << endl;
                  frameNumber1++;
@@ -170,7 +170,7 @@ void field::handleEvent_field(SDL_Event e)
                 cout << x << endl;
 
              }
-             if (e.key.keysym.sym == SDLK_LEFT && positionx <= 690)
+             if (e.key.keysym.sym == SDLK_LEFT && positionx1 >= 690)
              {
                 cout << "a" << endl;
                  frameNumber1++;
@@ -179,7 +179,7 @@ void field::handleEvent_field(SDL_Event e)
                 cout << x << endl;
 
              }
-             if (e.key.keysym.sym == SDLK_RIGHT && positionx >= 138)
+             if (e.key.keysym.sym == SDLK_RIGHT && positionx1 <= 1200)
              {
                 cout << "a" << endl;
                  frameNumber1++;
@@ -456,7 +456,7 @@ void field::handle_field(int value , int value1 , SDL_Event e)
 			//Mix_PlayChannel(-1, bouncing, 0);
 		}
 
-        if (object1.IsColliding(walking1) || object1.IsColliding(walking2) ||object1.IsColliding(walking2) || object1.IsColliding(walking2) )
+        if (SDL_HasIntersection(&object1.GetSDLRect() , &walking1.GetSDLRect() ) || object1.IsColliding(walking2) ||object1.IsColliding(walking2) || object1.IsColliding(walking2) )
 		{
 			dx = (dx*-1) ;
             //SCREEN_WIDTH = SCREEN_WIDTH*-1;

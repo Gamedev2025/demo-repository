@@ -43,6 +43,8 @@ class TexturedRectangle{
         m_rectangle.w = w;
         m_rectangle.h = h;
         }
+    SDL_Rect& GetSDLRect();
+        
 
         // Update every frame
         void Update();
