@@ -40,6 +40,7 @@
  TexturedRectangle reflected2;
  TexturedRectangle reflected3;
  TexturedRectangle reflected4;
+ TexturedRectangle tennis;
  SDL_Renderer* renderer;
  int count = 0;
  int count1 = 0;
@@ -215,6 +216,10 @@ bool Game::loadMedia()
     if(!reflected4.textureMedia(renderer , "./image/reflected4.png"))
     {
         cout<< "Walking 1 is not loaded!" << endl;
+        success = false;
+    }
+    if(!tennis.textureMedia(renderer , "./image/walking1-01.png"))
+    {
         success = false;
     }
     return success;

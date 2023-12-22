@@ -25,7 +25,7 @@ class field
     }
     static void handleEvent_field(SDL_Event e);
     ~field();
-    
+    void ball();
     static void handle_field(int value, int value1 , SDL_Event e);
     
     private:

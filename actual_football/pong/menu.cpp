@@ -42,6 +42,11 @@ void menu::handleEvent_menu(SDL_Event e)
                 
             }
 
+            if(x >= 256 && x <= 383 && y>= 299 && y<= 412)
+            {
+                currState = Football_Field;
+            }
+
       }
     
     

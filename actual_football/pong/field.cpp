@@ -26,8 +26,10 @@ extern TexturedRectangle reflected1;
 extern TexturedRectangle reflected2;
 extern TexturedRectangle reflected3;
 extern TexturedRectangle reflected4;
+extern TexturedRectangle tennis;
 
-
+SDL_Rect Player1rect;
+SDL_Rect Player2rect;
 
 extern Gamestate currState;
 extern SDL_Renderer* renderer;
@@ -43,11 +45,21 @@ extern int width ;
   int positiony1 = 400;
   int frameNumber = 0;
   int frameNumber1 = 0;
+  //ball position
+  int SCREEN_WIDTH = 670;
+  int SCREEN_HEIGHT = 560;
+  int dx = 10;
+  int dy = 10;
 //DynamicText* object;
  field::~field()
     {
     
     }
+
+   void field:: ball()
+   {
+        
+   }
 
 void field::handleEvent_field(SDL_Event e)
 {
@@ -363,68 +375,109 @@ void field::handle_field(int value , int value1 , SDL_Event e)
     //             cout << x << endl;
     //          }
              
-            if(frameNumber == 0)
-            {
-                walking1.SetPosition(positionx , positiony , 100 , 150);
-            walking1.Render(renderer);
-            }
-            if(frameNumber == 1)
-            {
-                 walking2.SetPosition(positionx , positiony , 100 , 150);
-            walking2.Render(renderer);
+            // if(frameNumber == 0)
+            // {
+            //     walking1.SetPosition(positionx , positiony , 100 , 150);
+            // walking1.Render(renderer);
+            // }
+            // if(frameNumber == 1)
+            // {
+            //      walking2.SetPosition(positionx , positiony , 100 , 150);
+            // walking2.Render(renderer);
 
-            }
-            if(frameNumber == 2)
-            {
-                 walking3.SetPosition(positionx , positiony , 100 , 150);
-            walking3.Render(renderer);
-            }
+            // }
+            // if(frameNumber == 2)
+            // {
+            //      walking3.SetPosition(positionx , positiony , 100 , 150);
+            // walking3.Render(renderer);
+            // }
 
-            if(frameNumber == 3)
-            {
-                 walking4.SetPosition(positionx , positiony , 100 , 150);
-            walking4.Render(renderer);
-            }
-            else 
-            {
-                walking1.SetPosition(positionx , positiony , 100 , 150);
-            walking1.Render(renderer);
-                
-            }
+            // if(frameNumber == 3)
+            // {
+            //      walking4.SetPosition(positionx , positiony , 100 , 150);
+            // walking4.Render(renderer);
+            // }
+             
+            object1.SetPosition(SCREEN_WIDTH , SCREEN_HEIGHT , 25 , 25);
 
-            if(frameNumber1 == 0)
-            {
-                reflected1.SetPosition(positionx1 , positiony1 , 100 , 150);
-            reflected1.Render(renderer);
-            }
-            if(frameNumber == 1)
-            {
-                 reflected2.SetPosition(positionx1 , positiony1 , 100 , 150);
-            reflected2.Render(renderer);
-
-            }
-            if(frameNumber1 == 2)
-            {
-                 reflected3.SetPosition(positionx1 , positiony1 , 100 , 150);
-            reflected3.Render(renderer);
-            }
-
-            if(frameNumber1 == 3)
-            {
-                 reflected4.SetPosition(positionx1 , positiony1 , 100 , 150);
-            reflected4.Render(renderer);
-            }
-            else 
-            {
-                reflected1.SetPosition(positionx1 , positiony1 , 100 , 150);
-            reflected1.Render(renderer);
-                
-            }
-             if(frameNumber > 3) frameNumber = 0;
-            if(frameNumber1 > 3) frameNumber1 = 0;
-            object1.SetPosition(500 , 500 , 25 , 25);
             
             object1.Render(renderer);
+                walking1.SetPosition(positionx , positiony , 100 , 105);
+            walking1.Render(renderer);
+                
+            
+
+            // if(frameNumber1 == 0)
+            // {
+            //     reflected1.SetPosition(positionx1 , positiony1 , 50 , 55);
+            // reflected1.Render(renderer);
+            // }
+            // if(frameNumber == 1)
+            // {
+            //      reflected2.SetPosition(positionx1 , positiony1 , 100 , 150);
+            // reflected2.Render(renderer);
+
+            // }
+            // if(frameNumber1 == 2)
+            // {
+            //      reflected3.SetPosition(positionx1 , positiony1 , 100 , 150);
+            // reflected3.Render(renderer);
+            // }
+
+            // if(frameNumber1 == 3)
+            // {
+            //      reflected4.SetPosition(positionx1 , positiony1 , 100 , 150);
+            // reflected4.Render(renderer);
+            // }
+            
+
+            
+            
+                reflected1.SetPosition(positionx1 , positiony1 , 100 , 105);
+            reflected1.Render(renderer);
+                
+            
+             if(frameNumber > 3) frameNumber = 0;
+            if(frameNumber1 > 3) frameNumber1 = 0;
+            
+        SCREEN_WIDTH += dx;
+        SCREEN_HEIGHT += dy;
+
+        if (SCREEN_WIDTH <=138  || SCREEN_WIDTH >= 1250)
+		{
+			dx = dx * -1;
+			// touchNum += 1;
+			//Mix_PlayChannel(-1, bouncing, 0);
+		}
+        if (SCREEN_HEIGHT <=435  || SCREEN_HEIGHT >= 700)
+		{
+			dy = dy * -1;
+			// touchNum += 1;
+			//Mix_PlayChannel(-1, bouncing, 0);
+		}
+
+        if (object1.IsColliding(walking1) || object1.IsColliding(walking2) ||object1.IsColliding(walking2) || object1.IsColliding(walking2) )
+		{
+			dx = (dx*-1) ;
+            //SCREEN_WIDTH = SCREEN_WIDTH*-1;
+            cout << SCREEN_WIDTH << endl;
+            //dy = (dy* -1);
+			// dx = dx + acceeX;
+			//touchNum += 1;
+			//Mix_PlayChannel(-1, sound, 0);
+
+		}
+
+        if (object1.IsColliding(reflected1) || object1.IsColliding(reflected2) ||object1.IsColliding(reflected3) || object1.IsColliding(reflected4) )
+		{
+			dx = (dx*-1) ;
+              //dy = (dy* -1);
+			// dx = dx + acceeX;
+			//touchNum += 1;
+			//Mix_PlayChannel(-1, sound, 0);
+
+		}
+            
            
     
     //object->DrawText(renderer , "Press w to proceed" , 300 , 500 , 700 , 100);
