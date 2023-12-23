@@ -526,6 +526,9 @@ void field::handle_field(int value , int value1 , SDL_Event e)
 		// 	ballRect = {SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 20, 20};
 		// }
 
+        //check who wins the game
+        if(player1Point == 5) currState = Player1Wins;
+        else if(player2Point == 5) currState = Player2Wins;
         if (SDL_HasIntersection(&object1.GetSDLRect() , &walking1.GetSDLRect() ) || object1.IsColliding(walking2) ||object1.IsColliding(walking2) || object1.IsColliding(walking2) )
 		{
 			dx = (dx*-1) ;

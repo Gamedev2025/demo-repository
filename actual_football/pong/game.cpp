@@ -18,6 +18,8 @@
 #include "starting.hpp"
 #include "goal1.hpp"
 #include "goal2.hpp"
+#include "player1wins.hpp"
+#include "player2wins.hpp"
 
  TexturedRectangle menu_BackGround;
  TexturedRectangle after_menu;
@@ -49,6 +51,8 @@
  TexturedRectangle gamescreen;
  TexturedRectangle point1;
  TexturedRectangle point2;
+ TexturedRectangle wins1;
+ TexturedRectangle wins2;
  
  SDL_Renderer* renderer;
  int count = 0;
@@ -247,6 +251,14 @@ bool Game::loadMedia()
     {
         success = false;
     }
+    if(!wins1.textureMedia(renderer , "./image/Player1wins.png"))
+    {
+        success = false;
+    }
+    if(!wins2.textureMedia(renderer , "./image/Player2wins.png"))
+    {
+        success = false;
+    }
     return success;
 }
 
@@ -330,7 +342,8 @@ void Game::input()
        case GameScreen : starting::handleEvent_gameScreen(event); break;
        case Goal1: goal1::handleEvent_goal1Screen(event);break;
         case Goal2: goal2::handleEvent_goal2Screen(event);break;
-        
+        case Player1Wins: player1wins::handleEvent_menu(event);break;
+        case Player2Wins: player2wins::handleEvent_menu(event);break;
         }
         
         //Splash::handle_splashScreen();
@@ -352,6 +365,8 @@ void Game::input()
         case GameScreen : starting::handle_gameScreen();break;
         case Goal1 : goal1::handle_goal1Screen();break;
         case Goal2: goal2::handle_goal2Screen();break;
+        case Player1Wins: player1wins::handle_menu();break;
+        case Player2Wins: player2wins::handle_menu();break;
         case Exit: isGameRunning = false;
             
         

@@ -19,6 +19,8 @@ enum Gamestate{
     GameScreen,
     Goal1,
     Goal2,
+    Player1Wins,
+    Player2Wins,
     Exit
 };
  
