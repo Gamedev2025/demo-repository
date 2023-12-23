@@ -34,7 +34,7 @@ int shift::handleEvent_menu(SDL_Event e )
                 if(x >= 433  && x <= 500)
                 {
                     cout << "Brazil" << endl;
-                    currState = Football_Field;
+                    currState = GameScreen;
                     count = 1;
                     return count;
                      
@@ -43,7 +43,7 @@ int shift::handleEvent_menu(SDL_Event e )
                 if(x >= 501  && x <= 586)
                 {
                     cout << "Argentina" << endl;
-                    currState = Football_Field;
+                    currState = GameScreen;
                     count  = 2;
                     return count;
 
@@ -52,7 +52,7 @@ int shift::handleEvent_menu(SDL_Event e )
                 if(x >= 611  && x <= 678)
                 {
                     cout << "Spain" << endl;
-                    currState = Football_Field;
+                    currState = GameScreen;
                     count = 3;
                     return count;
                 }
@@ -60,7 +60,7 @@ int shift::handleEvent_menu(SDL_Event e )
                 if(x >= 700  && x <= 766)
                 {
                     cout << "Germany" << endl;
-                    currState = Football_Field;
+                    currState = GameScreen;
                     count = 4;
                     return count;
                 }
@@ -68,7 +68,7 @@ int shift::handleEvent_menu(SDL_Event e )
                  if(x >= 788  && x <= 856)
                 {
                     cout << "Portugal" << endl;
-                   currState = Football_Field;
+                   currState = GameScreen;
                     count = 5;
                     return count;
                 }
@@ -76,7 +76,7 @@ int shift::handleEvent_menu(SDL_Event e )
                  if(x >= 878  && x <= 944)
                 {
                     cout << "Uruguy" << endl;
-                    currState = Football_Field;
+                    currState = GameScreen;
                     count = 6;
                     return count;
                 }
@@ -91,7 +91,7 @@ int shift::handleEvent_menu(SDL_Event e )
                 if(x >= 479  && x <= 548)
                 {
                     cout << "France" << endl;
-                   currState = Football_Field;
+                   currState = GameScreen;
                     count = 7;
                     return count;
                      
@@ -100,7 +100,7 @@ int shift::handleEvent_menu(SDL_Event e )
                 if(x >= 577  && x <= 645)
                 {
                     cout << "Italy" << endl;
-                   currState = Football_Field;
+                   currState = GameScreen;
                     count  = 8;
                     return count;
 
@@ -111,7 +111,7 @@ int shift::handleEvent_menu(SDL_Event e )
                 if(x >= 676  && x <= 746)
                 {
                     cout << "Netherlands" << endl;
-                   currState = Football_Field;
+                   currState = GameScreen;
                     count = 9;
                     return count;
                 }
@@ -119,15 +119,15 @@ int shift::handleEvent_menu(SDL_Event e )
                  if(x >= 777  && x <= 844)
                 {
                     cout << "England" << endl;
-                    currState = Football_Field;
+                    currState = GameScreen;
                     count = 10;
                     return count;
                 }
 
-                 if(y >= 878  && y <= 944)
+                 if(x >= 878  && x <= 944)
                 {
                     cout << "Belgium" << endl;
-                 currState = Football_Field;
+                 currState = GameScreen;
                     count = 11;
                     return count;
                 }

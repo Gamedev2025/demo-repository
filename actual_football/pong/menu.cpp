@@ -26,7 +26,7 @@ void menu::handleEvent_menu(SDL_Event e)
         if(e.type == SDL_MOUSEBUTTONDOWN)
         {
         
-            if(x >= 960 && x <= 1166 && y >= 396  && y <= 460)
+            if(x >= 1030 && x <= 1258 && y >= 396  && y <= 460)
             {
                 
                 cout << "Play Now" << endl;
@@ -34,7 +34,7 @@ void menu::handleEvent_menu(SDL_Event e)
             }
 
 
-             if(x >= 960 && x <= 1166 && y >= 500 && y <= 562)
+             if(x >= 1030 && x <= 1258 && y >= 500 && y <= 562)
             {
                 
                 cout << "Exit" << endl;
@@ -42,10 +42,7 @@ void menu::handleEvent_menu(SDL_Event e)
                 
             }
 
-            if(x >= 256 && x <= 383 && y>= 299 && y<= 412)
-            {
-                currState = Football_Field;
-            }
+           
 
       }
     

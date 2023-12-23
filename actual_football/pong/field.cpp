@@ -1,10 +1,15 @@
 #include "field.hpp"
 #include "TexturedRectangle.hpp"
 #include "game.hpp"
+#include <string>
+#include <ctime>
 #include "player1.hpp"
 #include "player2.hpp"
 #include "math.hpp"
 #include <iostream>
+#include<sstream>
+using namespace std;
+
 extern TexturedRectangle football;
 extern  TexturedRectangle argentina;
  extern TexturedRectangle brazil;
@@ -28,6 +33,9 @@ extern TexturedRectangle reflected3;
 extern TexturedRectangle reflected4;
 extern TexturedRectangle tennis;
 
+DynamicText* score1;
+DynamicText* score2;
+
 SDL_Rect Player1rect;
 SDL_Rect Player2rect;
 
@@ -45,11 +53,14 @@ extern int width ;
   int positiony1 = 460;
   int frameNumber = 0;
   int frameNumber1 = 0;
+  int player2Point = 0;
+  int player1Point = 0;
+    
   //ball position
   int SCREEN_WIDTH = 670;
   int SCREEN_HEIGHT = 560;
-  int dx = 20;
-  int dy = 20;
+  int dx = 30;
+  int dy = 30;
 //DynamicText* object;
  field::~field()
     {
@@ -75,7 +86,7 @@ void field::handleEvent_field(SDL_Event e)
         {
             if (e.key.keysym.sym == SDLK_ESCAPE)
              {
-                currState = main_menu;
+                currState = Pausemenu;
                 
              }
         //      switch (e.key.keysym.sym) {
@@ -243,6 +254,8 @@ void field::handle_field(int value , int value1 , SDL_Event e)
      football.playFrame(0 ,0 , width , height , 0);
      
       football.Render(renderer);
+      score1 = new DynamicText("./font/RobotoSlab-Bold.ttf" , 10);
+      score2 = new DynamicText("./font/RobotoSlab-Bold.ttf" , 10);
     // For player1
     switch (value)
     {
@@ -443,22 +456,80 @@ void field::handle_field(int value , int value1 , SDL_Event e)
         SCREEN_WIDTH += dx;
         SCREEN_HEIGHT += dy;
 
-        if (SCREEN_WIDTH <=138  || SCREEN_WIDTH >= 1250)
+        if (SCREEN_WIDTH <= 78  || SCREEN_WIDTH >= 1290)
 		{
 			dx = dx * -1;
 			// touchNum += 1;
 			//Mix_PlayChannel(-1, bouncing, 0);
 		}
-        if (SCREEN_HEIGHT <=435  || SCREEN_HEIGHT >= 700)
+        if (SCREEN_HEIGHT <= 385  || SCREEN_HEIGHT >= 700)
 		{
 			dy = dy * -1;
 			// touchNum += 1;
 			//Mix_PlayChannel(-1, bouncing, 0);
 		}
+        //check if it is a goal 
+        if (SCREEN_WIDTH >= 135  && SCREEN_WIDTH <= 186 && (SCREEN_HEIGHT >= 530 && SCREEN_HEIGHT <= 580))
+		{
+            currState = Goal2;
+			player2Point++;
+			//dy = random_int(5 , 2);
+            //*(touchNum%2 ==0 ? 1 : (-1));
+			 dx += 5;
+            dy += 5;
+			cout << "Play 1: " << player1Point << "- " << "Play 2: " << player2Point << endl;
+            SCREEN_WIDTH = 670;
+            SCREEN_HEIGHT = 560;
+            
+			object1.SetPosition(SCREEN_WIDTH , SCREEN_HEIGHT , 25 , 25);
+            //SDL_Delay(100);
+            object1.Render(renderer);
+
+		}
+
+        if (SCREEN_WIDTH >= 1180  && SCREEN_WIDTH <= 1236 && (SCREEN_HEIGHT >= 530 && SCREEN_HEIGHT <= 580))
+		{
+            currState = Goal1;
+			player1Point++;
+
+			//dy = random_int(5 , 2);
+            //*(touchNum%2 ==0 ? 1 : (-1));
+            
+            
+                dx += 5;
+                dy += 5;
+            
+            
+            
+			//dx = -5;
+			cout << "Play 1: " << player1Point << "- " << "Play 2: " << player2Point << endl;
+            SCREEN_WIDTH = 670;
+            SCREEN_HEIGHT = 560;
+            
+			object1.SetPosition(SCREEN_WIDTH , SCREEN_HEIGHT , 25 , 25);
+            //SDL_Delay(100);
+            object1.Render(renderer);
+
+		}
+        //score 2;
+        string s2 = to_string(player2Point);
+        score2->DrawText(renderer , s2 , 735 , 238 , 40 , 40);
+        
+        string s = to_string(player1Point);
+        score1->DrawText(renderer , s , 665 , 238 , 40 , 40);
+        // if (ballRect.y >= SCREEN_HEIGHT-40 && ballRect.x >= GOAL_LIMIT_LEFT && ballRect.x <= GOAL_LIMIT_RIGHT)
+		// {
+		// 	player2Point++;
+		// 	dx = random_int(3,5)*(touchNum%2 ==0 ? 1 : (-1));
+		// 	dy = -5;
+		// 	cout << "Play 1: " << player1Point << "- " << "Play 2: " << player2Point << endl;
+		// 	ballRect = {SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 20, 20};
+		// }
 
         if (SDL_HasIntersection(&object1.GetSDLRect() , &walking1.GetSDLRect() ) || object1.IsColliding(walking2) ||object1.IsColliding(walking2) || object1.IsColliding(walking2) )
 		{
 			dx = (dx*-1) ;
+            //dy = dy* -1;
             //SCREEN_WIDTH = SCREEN_WIDTH*-1;
             cout << SCREEN_WIDTH << endl;
             //dy = (dy* -1);
@@ -470,7 +541,8 @@ void field::handle_field(int value , int value1 , SDL_Event e)
 
         if (object1.IsColliding(reflected1) || object1.IsColliding(reflected2) ||object1.IsColliding(reflected3) || object1.IsColliding(reflected4) )
 		{
-			dx = (dx*-1) ;
+			dx = (dx * -1) ;
+            //dy += dy* 4;
               //dy = (dy* -1);
 			// dx = dx + acceeX;
 			//touchNum += 1;

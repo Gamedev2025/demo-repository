@@ -11,9 +11,9 @@ DynamicText::DynamicText(std::string fontfilepath, size_t fontSize){
     // Just like when we initialize our graphics subsystem,
     // we need to do the same for our font system.         	
     if(!s_ttfInitialized && TTF_Init() == -1){
-        std::cout << "Could not initailize SDL2_ttf, error: " << TTF_GetError() << std::endl;
+        //std::cout << "Could not initailize SDL2_ttf, error: " << TTF_GetError() << std::endl;
     }else{
-        std::cout << "SDL2_ttf system ready to go!" << std::endl;
+       // std::cout << "SDL2_ttf system ready to go!" << std::endl;
         // Initialize TTF system only once, even if
         // we have multipl Text objects.
         s_ttfInitialized = true;
@@ -37,7 +37,7 @@ DynamicText::~DynamicText(){
 
 void DynamicText::DrawText(SDL_Renderer* renderer, std::string text,int x, int y, int w, int h){
     // Pixels from our text
-    m_surface = TTF_RenderText_Solid(m_ourFont,text.c_str(),{140,140,142});
+    m_surface = TTF_RenderText_Solid(m_ourFont,text.c_str(),{200,200,142});
 
     // Setup the texture
     m_texture = SDL_CreateTextureFromSurface(renderer,m_surface);
@@ -58,3 +58,26 @@ void DynamicText::DrawText(SDL_Renderer* renderer, std::string text,int x, int y
     }
 
 }
+// void DynamicText::DrawText1(SDL_Renderer* renderer, int text,int x, int y, int w, int h){
+//     // Pixels from our text
+//     m_surface = TTF_RenderText_Solid(m_ourFont,text.c_str(),{140,140,142});
+
+//     // Setup the texture
+//     m_texture = SDL_CreateTextureFromSurface(renderer,m_surface);
+//     // Free the surface
+//     // We are done with it after we have uploaded to
+//     // the texture
+//     SDL_FreeSurface(m_surface);
+
+//     // Create a rectangle to draw on
+//     m_rectangle.x = x;
+//     m_rectangle.y = y;
+//     m_rectangle.w = w;
+//     m_rectangle.h = h;
+//     // Render our text on a rectangle
+//     SDL_RenderCopy(renderer,m_texture,NULL,&m_rectangle);
+//     if(m_texture != nullptr){
+//         SDL_DestroyTexture(m_texture);
+//     }
+
+// }

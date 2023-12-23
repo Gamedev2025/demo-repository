@@ -124,7 +124,7 @@ int play1::handleEvent_menu(SDL_Event e )
                     return count;
                 }
 
-                 if(y >= 878  && y <= 944)
+                 if(x >= 878  && x <= 944)
                 {
                     cout << "Belgium" << endl;
                     currState = Player2;

@@ -15,6 +15,10 @@ enum Gamestate{
     Football_Field,
     Player1,
     Player2,
+    Pausemenu,
+    GameScreen,
+    Goal1,
+    Goal2,
     Exit
 };
  

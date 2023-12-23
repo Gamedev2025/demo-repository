@@ -22,6 +22,7 @@ class DynamicText{
         ~DynamicText();
         // Function for drawing text
 		void DrawText(SDL_Renderer* renderer, std::string text,int x, int y, int w, int h);
+        void DrawText1(SDL_Renderer* renderer, int text,int x, int y, int w, int h);
 
 	private:
         // Rect,texture, and surface that we draw our font to.

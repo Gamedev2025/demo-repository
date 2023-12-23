@@ -14,7 +14,10 @@
 #include "player1.hpp"
 #include "player2.hpp"
 #include "field.hpp"
-
+#include "pausemenu.hpp"
+#include "starting.hpp"
+#include "goal1.hpp"
+#include "goal2.hpp"
 
  TexturedRectangle menu_BackGround;
  TexturedRectangle after_menu;
@@ -42,6 +45,10 @@
  TexturedRectangle reflected3;
  TexturedRectangle reflected4;
  TexturedRectangle tennis;
+ TexturedRectangle resume;
+ TexturedRectangle gamescreen;
+ TexturedRectangle point1;
+ TexturedRectangle point2;
  
  SDL_Renderer* renderer;
  int count = 0;
@@ -109,13 +116,13 @@ bool Game::loadMedia()
         success = false;
     }
 
-    if(!player1.textureMedia(renderer , "./image/player1.png"))
+    if(!player1.textureMedia(renderer , "./image/player1-01.png"))
     {
         cout << "Player 1 is not loaded!" << endl;
         success = false;
     }
 
-    if (!player2.textureMedia(renderer , "./image/player2.png"))
+    if (!player2.textureMedia(renderer , "./image/player2-01.png"))
     {
         cout << "Player 2 is not loaded!" << endl;
         success = false;
@@ -224,6 +231,22 @@ bool Game::loadMedia()
     {
         success = false;
     }
+    if(!resume.textureMedia(renderer, "./image/pausemenu.png"))
+    {
+        success = false;
+    }
+    if(!gamescreen.textureMedia(renderer, "./image/starting.png"))
+    {
+        success = false;
+    }
+    if(!point1.textureMedia(renderer , "./image/player1scores.png"))
+    {
+        success = false;
+    }
+    if(!point2.textureMedia(renderer , "./image/player2scores.png"))
+    {
+        success = false;
+    }
     return success;
 }
 
@@ -303,6 +326,10 @@ void Game::input()
         case Football_Field: field::handleEvent_field(event); break;
         case Player1 : count =  play1::handleEvent_menu(event);break;
        case Player2 : count1 = shift :: handleEvent_menu(event);break;
+       case Pausemenu : pausemenu::handleEvent_menu(event); break;
+       case GameScreen : starting::handleEvent_gameScreen(event); break;
+       case Goal1: goal1::handleEvent_goal1Screen(event);break;
+        case Goal2: goal2::handleEvent_goal2Screen(event);break;
         
         }
         
@@ -321,7 +348,10 @@ void Game::input()
         case Football_Field: field::handle_field(count , count1 , event);break;
         case Player1 : play1::handle_menu();break;
         case Player2 : shift:: handle_menu();break;
-         
+        case Pausemenu : pausemenu::handle_menu();break;
+        case GameScreen : starting::handle_gameScreen();break;
+        case Goal1 : goal1::handle_goal1Screen();break;
+        case Goal2: goal2::handle_goal2Screen();break;
         case Exit: isGameRunning = false;
             
         
